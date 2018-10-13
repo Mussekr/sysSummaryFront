@@ -45,15 +45,20 @@ class KuhlerChart extends Component {
       componentDidMount() {
         this.props.socket.on('kuhler', (data) => {
             const oldKuhlerDataSet = this.state.lineChartData.datasets[0];
-            const newKuhlerDataSet = { ...oldKuhlerDataSet };
+            let newKuhlerDataSet = { ...oldKuhlerDataSet };
+            const oldKuhlerLabels = this.state.lineChartData.labels;
+            let newKuhlerLabels = [...oldKuhlerLabels];
+            /*if (oldKuhlerDataSet.data.length > 300) {
+                newKuhlerDataSet = { ...oldKuhlerDataSet, data: oldKuhlerDataSet.data.slice(1, oldKuhlerDataSet.data.length), }
+                newKuhlerLabels = oldKuhlerLabels.slice(1, oldKuhlerLabels.length);
+            }*/
             newKuhlerDataSet.data.push(data[this.props.type]);
+            newKuhlerLabels.push(new Date().toLocaleTimeString());
 
             const newChartData = {
                 ...this.state.lineChartData,
                 datasets: [newKuhlerDataSet],
-                labels: this.state.lineChartData.labels.concat(
-                    new Date().toLocaleTimeString()
-                )
+                labels: newKuhlerLabels,
             };
             this.setState({ lineChartData: newChartData });
         });
@@ -61,7 +66,9 @@ class KuhlerChart extends Component {
 
       render() {
           return (
+            <div className="chart-container">
               <Chart options={this.state.lineChartOptions} data={this.state.lineChartData} />
+            </div>
           )
       }
 }

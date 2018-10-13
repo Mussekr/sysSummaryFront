@@ -7,8 +7,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const socket = io.connect('http://192.168.1.15:3000');
-socket.on('kuhler', (msg) => console.log(msg));
-
 
 ReactDOM.render(
 	<SocketProvider socket={socket}>
