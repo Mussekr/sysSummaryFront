@@ -1,30 +1,21 @@
 import React, { Component } from 'react';
-import { socketConnect } from 'socket.io-react';
-import logo from './logo.svg';
+import _ from 'lodash';
+import KuhlerChart from './KuhlerChart';
 import './App.css';
 
 class App extends Component {
 	render() {
-        this.props.socket.on('kuhler', (data) => console.log(data));
         return (
             <div className="App">
                 <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
+                    <h1>Cache-server stats</h1>
+                    <KuhlerChart type="fanRPM" />
+                    <KuhlerChart type="pumpRPM" />
+                    <KuhlerChart type="liquidTemp" />
                 </header>
             </div>
         )
     }
 }
 
-export default socketConnect(App);
+export default App;
