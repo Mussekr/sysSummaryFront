@@ -46,7 +46,7 @@ class KuhlerChart extends Component {
         this.props.socket.on('kuhler', (data) => {
             const oldKuhlerDataSet = this.state.lineChartData.datasets[0];
             const newKuhlerDataSet = { ...oldKuhlerDataSet };
-            newBtcDataSet.data.push(data[this.props.type]);
+            newKuhlerDataSet.data.push(data[this.props.type]);
 
             const newChartData = {
                 ...this.state.lineChartData,
