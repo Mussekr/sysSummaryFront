@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('http://192.168.1.15:3000');
 socket.on('kuhler', (msg) => console.log(msg));
 
 
