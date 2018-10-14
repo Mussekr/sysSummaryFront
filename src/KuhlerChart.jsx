@@ -48,10 +48,10 @@ class KuhlerChart extends Component {
             let newKuhlerDataSet = { ...oldKuhlerDataSet };
             const oldKuhlerLabels = this.state.lineChartData.labels;
             let newKuhlerLabels = [...oldKuhlerLabels];
-            /*if (oldKuhlerDataSet.data.length > 300) {
-                newKuhlerDataSet = { ...oldKuhlerDataSet, data: oldKuhlerDataSet.data.slice(1, oldKuhlerDataSet.data.length), }
-                newKuhlerLabels = oldKuhlerLabels.slice(1, oldKuhlerLabels.length);
-            }*/
+            if (oldKuhlerDataSet.data.length > 600) {
+                newKuhlerDataSet = { ...oldKuhlerDataSet, data: oldKuhlerDataSet.data.slice(299, oldKuhlerDataSet.data.length), }
+                newKuhlerLabels = oldKuhlerLabels.slice(299, oldKuhlerLabels.length);
+            }
             newKuhlerDataSet.data.push(data[this.props.type]);
             newKuhlerLabels.push(new Date().toLocaleTimeString());
 
